@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JU Regensburg-Land – Ortsverbände</title>
+  <meta name="description" content="Finde einen JU Ortsverband in deiner Nähe im Landkreis Regensburg.">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root{ --navy:#00164c; --lime:#a1bf2f; --white:#ffffff; }
+
+    body{
+      margin:0; font-family:Inter,Arial,sans-serif; color:var(--white);
+      background:linear-gradient(180deg,#0a1232,#0b153e 40%,#0d1b4f 100%);
+    }
+
+    /* ===== HEADER (wie index, Mobile-Nav wie kontakt) ===== */
+    header{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(10,18,50,.6);
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header-inner{
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 20px;
+    }
+    .logo img{height:56px; display:block}
+    nav{display:flex; gap:8px}
+    nav a{
+      color:var(--white); text-decoration:none; font-weight:700;
+      padding:10px 14px; border-radius:10px; transition:background .2s;
+    }
+    nav a:hover{background:rgba(255,255,255,.12)}
+    nav a[aria-current="page"]{
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+    }
+    .burger{
+      display:none; background:none; border:none; color:var(--white);
+      font-size:1.6rem; cursor:pointer;
+    }
+    @media (max-width:960px){
+      nav{display:none}
+      .burger{display:block}
+    }
+
+    /* ===== Mobile Nav (Slide-in von rechts, wie kontakt.html) ===== */
+    .mobile-nav{
+      position:fixed; top:0; right:-100%; width:75%; height:100%;
+      background:rgba(7,12,34,.98); backdrop-filter:blur(10px);
+      display:flex; flex-direction:column; align-items:flex-end;
+      padding:40px 24px; transition:right .3s ease; z-index:9999;
+    }
+    .mobile-nav.active{ right:0; }
+    .mobile-nav a{
+      color:var(--white); font-size:1.4rem; text-decoration:none;
+      margin:14px 0; text-align:right;
+    }
+    .mobile-nav a.active{ color:var(--lime); font-weight:800; }
+    .close-btn{
+      position:absolute; top:14px; right:18px; font-size:2rem;
+      border:none; background:none; color:var(--white); cursor:pointer;
+    }
+
+    /* ===== Page header ===== */
+    .page-hero{max-width:1100px;margin:28px auto 0;padding:24px 20px 10px}
+    .kicker{color:#b6c7ff;text-transform:uppercase;font-size:.8rem;letter-spacing:.18em;font-weight:700;opacity:.9}
+    h1{margin:8px 0 10px;font-size:clamp(28px,4vw,40px);line-height:1.12}
+    .sub{color:#dfe6ff;opacity:.92;max-width:880px}
+
+    /* ===== Finder ===== */
+    .finder{max-width:1100px;margin:18px auto 8px;padding:0 20px}
+    .bar-search{
+      display:flex; gap:10px; align-items:stretch;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18); border-radius:16px;
+      padding:10px; box-shadow:0 8px 24px rgba(0,0,0,.25);
+    }
+    .bar-search input{
+      flex:1; background:transparent; border:0; outline:0; color:var(--white);
+      font-size:1rem; padding:12px 12px
+    }
+    .bar-search input::placeholder{color:rgba(255,255,255,.85)}
+    .btn{
+      background:linear-gradient(135deg,var(--lime),#cde95d); color:#0b153e;
+      border:0; font-weight:800; border-radius:12px; padding:12px 16px;
+      cursor:pointer; transition:transform .05s ease; white-space:nowrap
+    }
+    .btn:active{transform:translateY(1px)}
+    .ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.25)}
+
+    /* ===== Result box ===== */
+    .result{max-width:1100px;margin:14px auto 0;padding:0 20px;display:none}
+    .result.show{display:block}
+    .result-card{
+      background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.22);
+      border-radius:16px; padding:14px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px
+    }
+    .badge{background:linear-gradient(135deg,var(--lime),#dffb7a);color:#0b153e;font-weight:900;border-radius:999px;padding:6px 10px;font-size:.82rem}
+    .distance{opacity:.95}
+
+    /* ===== Grid ===== */
+    .grid{max-width:1100px;margin:16px auto 60px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media (max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.10));
+      border:1px solid rgba(255,255,255,.28); border-radius:16px; padding:16px; min-height:140px;
+      color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.55); box-shadow:0 8px 22px rgba(0,0,0,.25)
+    }
+    .card h3{margin:0 0 6px;font-size:1.1rem;font-weight:800;letter-spacing:.2px}
+    .meta{font-size:.96rem;line-height:1.35;margin:6px 0 4px}
+    .meta b{font-weight:800}
+    .card .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);padding:6px 10px;border-radius:999px;font-size:.86rem;color:#eefecc;font-weight:700;text-decoration:none}
+    .chip:hover{text-decoration:underline}
+    .card.highlight{outline:2px solid var(--lime);box-shadow:0 0 0 6px rgba(161,191,47,.18)}
+
+    /* ===== Footer ===== */
+    footer{background:#121523;color:#cfd6ff;text-align:center;padding:32px 16px}
+    footer a{color:#e0ffa6;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html"><img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo"></a>
+      <nav>
+        <a href="index.html">Start</a>
+        <!-- News entfernt -->
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html" aria-current="page">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV (wie kontakt.html) -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a href="index.html" onclick="closeMobileNav()">Start</a>
+    <!-- News entfernt -->
+    <a href="jungeliste.html" onclick="closeMobileNav()">Junge Liste</a>
+    <a href="ortsverbaende.html" class="active" onclick="closeMobileNav()">Ortsverbände</a>
+    <a href="mitgliedwerden.html" onclick="closeMobileNav()">Mitglied werden</a>
+    <a href="kontakt.html" onclick="closeMobileNav()">Kontakt</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="kicker">Netzwerk im Landkreis</div>
+    <h1>Finde einen JU Ortsverband in deiner Nähe</h1>
+    <p class="sub">Gib deinen Wohnort ein oder nutze die Standort-Funktion. Wir zeigen dir den nächstgelegenen Ortsverband der JU Regensburg-Land.</p>
+  </section>
+
+  <!-- FINDER -->
+  <section class="finder" aria-label="Ortsverband-Suche">
+    <div class="bar-search">
+      <input id="addressInput" type="text" placeholder="Wohnort oder Adresse (z. B. 'Wenzenbach' oder '930xx Regensburg')" aria-label="Wohnort oder Adresse eingeben">
+      <button class="btn" id="searchBtn">Suchen</button>
+      <button class="btn ghost" id="geoBtn" title="Aktuelle Position verwenden">Standort verwenden</button>
+    </div>
+    <div class="result" id="resultBox" role="status" aria-live="polite">
+      <div class="result-card">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="badge">Nächstgelegen</span>
+          <strong id="nearestName">—</strong>
+          <span class="distance" id="nearestDistance"></span>
+        </div>
+        <div style="display:flex;gap:10px">
+          <a id="scrollLink" class="btn ghost" href="#">In Liste hervorheben</a>
+          <a id="mapsLink" class="btn" target="_blank" rel="noopener">In Karten öffnen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <main class="grid" id="grid" aria-label="Alle Ortsverbände"></main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a></p>
+    <p>
+      <a href="https://www.instagram.com/jurgb_land/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      &nbsp;&nbsp;
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav(){document.getElementById('mobile-nav').classList.add('active')}
+    function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('active')}
+
+    // ===== Daten (nur Name + E-Mail je Ansprechpartner) =====
+    const OVs = [
+      { id:'bar', name:'Barbing',       lat:49.0021, lon:12.2204, contact:'Schuster Marco',      email:'schuster.marco03@gmail.com' },
+      { id:'ber', name:'Beratzhausen',  lat:49.0965, lon:11.7937, contact:'Troppmann Christina', email:'christina.dechant@gmx.de'   },
+      { id:'bew', name:'Bernhardswald', lat:49.0956, lon:12.2193, contact:'Emmerich Sabine',     email:'emmerich.sabine@icloud.de'  },
+      { id:'hag', name:'Hagelstadt',    lat:48.8846, lon:12.2253, contact:'Stompor Nicole',      email:'nicolestompor@t-online.de'  },
+      { id:'hem', name:'Hemau',         lat:49.0534, lon:11.7812, contact:'Schöfmann Jonas',     email:'jonas.schoefmann@web.de'    },
+      { id:'laa', name:'Laaber',        lat:49.0510, lon:11.9047, contact:'Schwendner Mathias',  email:'mathias.schwender@web.de'   },
+      { id:'lap', name:'Lappersdorf',   lat:49.0557, lon:12.0907, contact:'Rumstadt Dr. Franz',  email:'franz.rumstadt@freenet.de'  },
+      { id:'neu', name:'Neutraubling',  lat:48.9862, lon:12.2040, contact:'Weiß Jan',            email:'weiss.jan@freenet.de'       },
+      { id:'nit', name:'Nittendorf',    lat:49.0305, lon:11.9693, contact:'Standfest Valerie',   email:'stefipoint@hotmail.com'     },
+      { id:'obt', name:'Obertraubling', lat:48.9690, lon:12.1520, contact:'Ettl Simon',          email:'simon.ettl.se@gmail.com'    },
+      { id:'reg', name:'Regenstauf',    lat:49.1249, lon:12.1303, contact:'Schmidbauer Katja',   email:''                           },
+      { id:'sch', name:'Schierling',    lat:48.8287, lon:12.1204, contact:'Hofmeister Paul',     email:'paul.hofmeister0@gmail.com' },
+      { id:'sin', name:'Sinzing',       lat:49.0027, lon:12.0308, contact:'Schifferl Ludwig',    email:'ludwig-schifferl@t-online.de'},
+      { id:'tha', name:'Thalmassing',   lat:48.8918, lon:12.1892, contact:'Kreiml Simon',        email:'s.kreiml@gmx.de'            },
+      { id:'wen', name:'Wenzenbach',    lat:49.0758, lon:12.1698, contact:'Schön Patrick',       email:'patrick.schön1995@gmail.com'}
+    ];
+
+    // ===== Grid render (zeigt nur Name + E-Mail) =====
+    const grid = document.getElementById('grid');
+    function renderGrid() {
+      grid.innerHTML = '';
+      OVs.forEach(ov=>{
+        const el = document.createElement('article');
+        el.className = 'card';
+        el.id = 'ov-' + ov.id;
+        const emailHtml = ov.email
+          ? `<a class="chip" href="mailto:${ov.email}">${ov.email}</a>`
+          : `<span class="chip" title="Keine Mail hinterlegt">Kein E-Mail-Kontakt</span>`;
+        el.innerHTML = `
+          <h3>${ov.name}</h3>
+          <div class="meta"><b>${ov.contact}</b></div>
+          <div class="actions">
+            <a class="chip" href="https://www.openstreetmap.org/?mlat=${ov.lat}&mlon=${ov.lon}#map=12/${ov.lat}/${ov.lon}" target="_blank" rel="noopener">Karte</a>
+            ${emailHtml}
+          </div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+    renderGrid();
+
+    // ===== Distanzberechnung (für Suche/Geolocation) =====
+    function deg2rad(d){return d*Math.PI/180}
+    function distanceKm(a,b){
+      const R=6371;
+      const dLat=deg2rad(b.lat-a.lat);
+      const dLon=deg2rad(b.lon-a.lon);
+      const la1=deg2rad(a.lat), la2=deg2rad(b.lat);
+      const x=Math.sin(dLat/2)**2 + Math.cos(la1)*Math.cos(la2)*Math.sin(dLon/2)**2;
+      return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));
+    }
+    function nearestOf(coords){
+      let best=null, bestD=Infinity;
+      OVs.forEach(ov=>{
+        const d = distanceKm(coords, {lat:ov.lat, lon:ov.lon});
+        if(d<bestD){bestD=d; best=ov;}
+      });
+      return {ov:best, km:bestD};
+    }
+
+    // ===== Result UI =====
+    const resultBox = document.getElementById('resultBox');
+    const nearestName = document.getElementById('nearestName');
+    const nearestDistance = document.getElementById('nearestDistance');
+    const mapsLink = document.getElementById('mapsLink');
+    const scrollLink = document.getElementById('scrollLink');
+
+    function showNearest(res){
+      document.querySelectorAll('.card.highlight').forEach(c=>c.classList.remove('highlight'));
+      const card = document.getElementById('ov-'+res.ov.id);
+      if(card){
+        card.classList.add('highlight');
+        card.scrollIntoView({behavior:'smooth', block:'center'});
+      }
+      nearestName.textContent = res.ov.name;
+      nearestDistance.textContent = `· ca. ${res.km.toFixed(1)} km entfernt`;
+      mapsLink.href = `https://www.openstreetmap.org/?mlat=${res.ov.lat}&mlon=${res.ov.lon}#map=12/${res.ov.lat}/${res.ov.lon}`;
+      scrollLink.href = `#ov-${res.ov.id}`;
+      resultBox.classList.add('show');
+    }
+
+    // ===== Geocoding (bei Eingabe) =====
+    async function geocodeAddress(q){
+      const url = new URL('https://nominatim.openstreetmap.org/search');
+      url.searchParams.set('q', q);
+      url.searchParams.set('format', 'json');
+      url.searchParams.set('addressdetails', '0');
+      url.searchParams.set('limit', '1');
+      const res = await fetch(url.toString(), {headers:{'Accept':'application/json','User-Agent':'JU-Regensburg-Land Finder'}});
+      if(!res.ok) throw new Error('Geocoding fehlgeschlagen');
+      const data = await res.json();
+      if(!data?.length) throw new Error('Keine Treffer gefunden');
+      return {lat:parseFloat(data[0].lat), lon:parseFloat(data[0].lon)};
+    }
+
+    // ===== Controls =====
+    const addressInput = document.getElementById('addressInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const geoBtn = document.getElementById('geoBtn');
+
+    searchBtn.addEventListener('click', async ()=>{
+      const q = addressInput.value.trim();
+      if(!q){ addressInput.focus(); return; }
+      const prev = searchBtn.textContent; searchBtn.disabled = true; searchBtn.textContent = 'Suche…';
+      try{
+        const coords = await geocodeAddress(q);
+        const res = nearestOf(coords);
+        showNearest(res);
+      }catch(e){
+        alert('Adresse konnte nicht gefunden werden. Bitte einen genaueren Ort angeben.');
+      }finally{
+        searchBtn.disabled = false; searchBtn.textContent = prev;
+      }
+    });
+
+    addressInput.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){ e.preventDefault(); searchBtn.click(); }
+    });
+
+    geoBtn.addEventListener('click', ()=>{
+      if(!navigator.geolocation){
+        alert('Geolocation wird von deinem Browser nicht unterstützt.');
+        return;
+      }
+      const prev = geoBtn.textContent; geoBtn.disabled = true; geoBtn.textContent = 'Bestimme Standort…';
+      navigator.geolocation.getCurrentPosition(
+        pos=>{
+          const coords = {lat:pos.coords.latitude, lon:pos.coords.longitude};
+          const res = nearestOf(coords);
+          showNearest(res);
+          geoBtn.disabled=false; geoBtn.textContent=prev;
+        },
+        err=>{
+          alert('Standort konnte nicht ermittelt werden. Bitte erlaube den Zugriff oder gib die Adresse ein.');
+          geoBtn.disabled=false; geoBtn.textContent=prev;
+        },
+        {enableHighAccuracy:true, timeout:10000, maximumAge:60000}
+      );
+    });
+  </script>
+</body>
+</html>

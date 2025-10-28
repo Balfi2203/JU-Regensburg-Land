@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Datenschutz · JU Regensburg-Land</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root { --navy:#00164c; --lime:#a1bf2f; --white:#ffffff; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(180deg,#0a1232,#0b153e 40%,#0d1b4f 100%);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(10,18,50,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .logo img { height: 56px; display: block; }
+
+    nav { display: flex; gap: 8px; }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    nav a:hover { background: rgba(255,255,255,0.12); }
+    nav a.active {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    @media (max-width:960px) {
+      nav { display: none; }
+      .burger { display: block; }
+    }
+
+    /* MOBILE NAV */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      height: 100%;
+      background: rgba(7,12,34,0.98);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 40px 24px;
+      transition: right 0.3s ease;
+      z-index: 9999;
+    }
+    .mobile-nav.active { right: 0; }
+    .mobile-nav a {
+      color: var(--white);
+      font-size: 1.4rem;
+      text-decoration: none;
+      margin: 14px 0;
+      text-align: right;
+    }
+    .mobile-nav a.active { color: var(--lime); font-weight: 800; }
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 2rem;
+      border: none;
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* HAUPTBEREICH */
+    main {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 16px 80px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
+      color: var(--lime);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: var(--lime);
+      margin-top: 32px;
+    }
+    a { color: var(--lime); }
+
+    /* FOOTER */
+    footer {
+      background: #121523;
+      color: #cfd6ff;
+      text-align: center;
+      padding: 32px 16px;
+    }
+    footer a {
+      color: #e0ffa6;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
+      </a>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a class="active" href="datenschutz.html">Datenschutz</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a href="index.html">Start</a>
+    <a href="jungeliste.html">Junge Liste</a>
+    <a href="ortsverbaende.html">Ortsverbände</a>
+    <a href="mitgliedwerden.html">Mitglied werden</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a class="active" href="datenschutz.html">Datenschutz</a>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <h1>Datenschutzerklärung</h1>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+      Johannes Bawidamann<br>
+      Georg-Britting-Straße 11a<br>
+      93152 Nittendorf<br>
+      E-Mail: <a href="mailto:jobawidamann@aol.de">jobawidamann@aol.de</a><br>
+      Verantwortlicher und 1. Vorsitzender der Jungen Union Regensburg-Land
+    </p>
+
+    <h2>2. Allgemeines zur Datenverarbeitung</h2>
+    <p>
+      Wir verarbeiten personenbezogene Daten gemäß der Datenschutz-Grundverordnung (DSGVO) und dem Bundesdatenschutzgesetz (BDSG).
+      Daten werden nur erhoben, wenn dies gesetzlich erlaubt ist oder Sie ausdrücklich eingewilligt haben.
+    </p>
+
+    <h2>3. Rechtsgrundlagen der Verarbeitung</h2>
+    <ul>
+      <li>Art. 6 Abs. 1 lit. a DSGVO – Einwilligung (z. B. Kontaktformular, Mitgliedsantrag)</li>
+      <li>Art. 6 Abs. 1 lit. b DSGVO – Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen</li>
+      <li>Art. 6 Abs. 1 lit. f DSGVO – Wahrung berechtigter Interessen (z. B. Öffentlichkeitsarbeit, Vereinsverwaltung)</li>
+    </ul>
+
+    <h2>4. Erhebung von Zugriffsdaten</h2>
+    <p>
+      Beim Aufruf unserer Website werden automatisch technische Informationen (z. B. IP-Adresse, Browsertyp, Betriebssystem) erfasst.
+      Diese Daten dienen ausschließlich der Sicherstellung eines störungsfreien Betriebs und werden nicht zur Identifizierung von Personen verwendet.
+    </p>
+
+    <h2>5. Kontaktformular und E-Mail</h2>
+    <p>
+      Wenn Sie uns über das Kontaktformular oder per E-Mail kontaktieren, werden Ihre Angaben ausschließlich zur Bearbeitung der Anfrage genutzt.
+      Eine Weitergabe an Dritte erfolgt nicht. Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+    </p>
+
+    <h2>6. Mitgliedsanträge</h2>
+    <p>
+      Daten, die Sie über das Formular „Mitglied werden“ übermitteln, verarbeiten wir zur Bearbeitung Ihres Mitgliedsantrags und zur Durchführung satzungsgemäßer Aufgaben.
+      Dazu zählen insbesondere Kontaktaufnahme, Einladung zu Veranstaltungen und Mitgliederverwaltung.
+      Die Daten werden gelöscht, sobald sie für diese Zwecke nicht mehr erforderlich sind oder Sie Ihre Mitgliedschaft beenden.
+    </p>
+
+    <h2>7. Verarbeitung zu politischen Zwecken</h2>
+    <p>
+      Im Rahmen unserer politischen Arbeit können personenbezogene Daten (z. B. Name, Fotos) auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO veröffentlicht werden,
+      sofern kein überwiegendes schutzwürdiges Interesse entgegensteht. Veröffentlichungen in Social Media erfolgen nur mit vorheriger Einwilligung.
+    </p>
+
+    <h2>8. Social Media (Instagram & Facebook)</h2>
+    <p>
+      Unsere Website verlinkt auf Seiten von Meta Platforms (Instagram & Facebook).
+      Beim Anklicken eines Links werden Daten (z. B. IP-Adresse) an den jeweiligen Anbieter übermittelt.
+      Wir haben keinen Einfluss auf die Verarbeitung dieser Daten.  
+      Weitere Informationen: <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">www.facebook.com/privacy/policy</a>.
+    </p>
+
+    <h2>9. Datensicherheit</h2>
+    <p>
+      Diese Website verwendet SSL-/TLS-Verschlüsselung. Trotzdem kann keine vollständige Sicherheit der Datenübertragung im Internet garantiert werden.
+      Bitte senden Sie keine vertraulichen Daten unverschlüsselt per E-Mail.
+    </p>
+
+    <h2>10. Ihre Rechte</h2>
+    <ul>
+      <li>Auskunft (Art. 15 DSGVO)</li>
+      <li>Berichtigung (Art. 16 DSGVO)</li>
+      <li>Löschung (Art. 17 DSGVO)</li>
+      <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Widerspruch (Art. 21 DSGVO)</li>
+      <li>Beschwerde bei einer Aufsichtsbehörde (Art. 77 DSGVO)</li>
+    </ul>
+    <p>
+      Zuständige Aufsichtsbehörde:<br>
+      Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)<br>
+      Promenade 18, 91522 Ansbach<br>
+      <a href="https://www.lda.bayern.de" target="_blank" rel="noopener">www.lda.bayern.de</a>
+    </p>
+
+    <h2>11. Verantwortlich für das Webdesign</h2>
+    <p>
+      Fischer Leopold, Graf von Ballestrem Alexander GbR<br>
+      Design & technische Umsetzung der Website für die JU Regensburg-Land
+    </p>
+
+    <h2>12. Aktualität</h2>
+    <p>Diese Datenschutzerklärung ist aktuell gültig und hat den Stand Oktober 2025.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · 
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+    </p>
+    <p>
+      <a href="https://www.instagram.com/jurgb_land/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      &nbsp;&nbsp;
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav(){ document.getElementById('mobile-nav').classList.add('active'); }
+    function closeMobileNav(){ document.getElementById('mobile-nav').classList.remove('active'); }
+  </script>
+</body>
+</html>

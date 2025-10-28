@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JU Regensburg-Land</title>
+  <meta name="description" content="Junge Union Regensburg-Land – Politik von jungen Menschen für unsere Region.">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root { --navy:#00164c; --lime:#a1bf2f; --white:#ffffff; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Inter", Arial, sans-serif;color:var(--white);background:linear-gradient(180deg,#0a1232,#0b153e 40%,#0d1b4f 100%)}
+
+    header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(140%) blur(10px);background:rgba(10,18,50,.6);border-bottom:1px solid rgba(255,255,255,.1)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px}
+    .logo img{height:56px;display:block}
+    nav{display:flex;gap:8px}
+    nav a{color:var(--white);text-decoration:none;font-weight:700;padding:10px 14px;border-radius:10px;transition:background .2s}
+    nav a:hover{background:rgba(255,255,255,.12)}
+    nav a.active{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28)}
+    .burger{display:none;background:none;border:none;color:var(--white);font-size:1.6rem;cursor:pointer}
+    @media (max-width:960px){nav{display:none}.burger{display:block}}
+
+    .mobile-nav{position:fixed;top:0;right:-100%;width:75%;height:100%;background:rgba(7,12,34,.98);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:flex-end;padding:40px 24px;transition:right .3s ease;z-index:9999}
+    .mobile-nav.active{right:0}
+    .mobile-nav a{color:var(--white);font-size:1.4rem;text-decoration:none;margin:14px 0;text-align:right}
+    .mobile-nav a.active{color:var(--lime);font-weight:800}
+    .close-btn{position:absolute;top:14px;right:18px;font-size:2rem;border:none;background:none;color:var(--white);cursor:pointer}
+
+    .hero{position:relative;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.55)) , url('Bilder/gruppenfotowahl.jpg') center/cover no-repeat;transform:scale(1.04);filter:saturate(1.05)}
+    .hero-inner{position:relative;max-width:1200px;margin:0 auto;padding:120px 16px 110px;text-align:center}
+    .tag{display:inline-block;color:var(--lime);border:2px solid var(--lime);border-radius:999px;padding:8px 14px;font-weight:800;letter-spacing:.3px;background:rgba(0,0,0,.28);backdrop-filter:blur(2px)}
+    h1{font-size:clamp(2.2rem,5vw,3.8rem);margin:16px 0 12px;line-height:1.04}
+    .lead{opacity:.96;letter-spacing:.6px;text-transform:uppercase;margin-bottom:26px}
+    .cta-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;border:2px solid var(--lime);background:var(--lime);color:#0b1a3f;font-weight:900;text-decoration:none;transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;box-shadow:0 6px 14px rgba(161,191,47,.28)}
+    .btn:hover{filter:brightness(1.05);transform:translateY(-1px)}
+    .btn.secondary{background:transparent;color:var(--white);border-color:rgba(255,255,255,.65);box-shadow:none}
+
+    .wrap{max-width:1200px;margin:0 auto;padding:40px 16px}
+    .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.quick{grid-template-columns:1fr}}
+    .card{position:relative;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.14);padding:22px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+    .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.28);border-color:rgba(255,255,255,.24)}
+    .card h3{margin:6px 0 8px;font-size:1.2rem}
+    .card p{opacity:.95;margin:0 0 10px}
+    .card a{color:var(--lime);font-weight:800;text-decoration:none}
+    .card a:hover{text-decoration:underline}
+
+    .junge-liste{margin:68px 0}
+    .jl-inner{border-radius:18px;padding:34px 22px;background:linear-gradient(135deg, rgba(161,191,47,.25), rgba(161,191,47,.12) 40%, rgba(0,22,76,.55));border:1px solid rgba(161,191,47,.45);text-align:center}
+    .jl-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:2px solid var(--lime);color:var(--lime);font-weight:900;margin-bottom:10px}
+
+    .greeting{max-width:1000px;margin:84px auto 40px;padding:54px 42px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.15);border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.25)}
+    .greeting img{width:200px;border-radius:14px;margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+
+    footer{background:#121523;color:#cfd6ff;text-align:center;padding:32px 16px;margin-top:60px}
+    footer a{color:#e0ffa6;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html"><img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo"></a>
+      <nav>
+        <a class="active" href="index.html">Start</a>
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a class="active" href="index.html">Start</a>
+    <a href="jungeliste.html">Junge Liste</a>
+    <a href="ortsverbaende.html">Ortsverbände</a>
+    <a href="mitgliedwerden.html">Mitglied werden</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-inner fade-up">
+      <span class="tag">#GemeinsamFürDenLandkreisRegensburg</span>
+      <h1>Jung. Engagiert. Zukunftsorientiert.</h1>
+      <p class="lead">Gestalte mit uns die Politik im Landkreis-Regensburg</p>
+      <div class="cta-row">
+        <a class="btn" href="mitgliedwerden.html"><i class="fa-solid fa-user-plus"></i> Jetzt Mitglied werden</a>
+        <a class="btn secondary" href="jungeliste.html"><i class="fa-solid fa-list"></i> Unsere Themen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap fade-up d2">
+    <div class="quick">
+      <article class="card">
+        <h3><i class="fa-solid fa-people-group"></i> Ortsverbände</h3>
+        <p>Finde deinen JU-Ortsverband vor Ort.</p>
+        <a href="ortsverbaende.html">Ortsverbände entdecken →</a>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-square-check"></i> Junge Liste</h3>
+        <p>Kommunal engagiert: Unsere Junge Liste für den Landkreis</p>
+        <a href="jungeliste.html">Mehr erfahren →</a>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-user-plus"></i> Mitglied werden</h3>
+        <p>Mach mit und bring deine Ideen ein.</p>
+        <a href="mitgliedwerden.html">Mitglied werden →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="greeting fade-up">
+    <img src="Bilder/Johannes Bawidamann.jpg" alt="Johannes Bawidamann">
+    <h2>Grußwort der Vorstandschaft</h2>
+    <p>Herzlich willkommen auf der neuen Homepage der Jungen Union Regensburg Land!</p>
+    <p>Unser Landkreis ist geprägt von einer einzigartigen Mischung aus ländlicher Verwurzelung und dynamischer Entwicklung. Zwischen Donau und Laber, zwischen Tradition und Fortschritt, leben hier Menschen, die anpacken, gestalten und ihre Heimat lieben. Genau dieses Lebensgefühl wollen wir als Junge Union aufgreifen und mit frischen Ideen in die Zukunft tragen. Die Junge Union Regensburg Land steht für eine Politik, die zuhört, mitdenkt und handelt – nah an den Menschen, nah an den Gemeinden, tief im vorpolitischen & ehrenamtlichen Raum verwurzelt.</p>
+    <p>Wir sind die Stimme der jungen Generation im Landkreis, die sich für bezahlbares Wohnen, moderne Infrastruktur, digitale Chancen und eine starke regionale Wirtschaft einsetzt. Dabei vergessen wir nie, woher wir kommen: aus dem Ehrenamt, aus den Vereinen, aus der Mitte unserer Orte.</p>
+    <p>Als Teil der Jungen Union Bayern sind wir eingebunden in ein starkes Netzwerk engagierter junger Menschen, die sich landesweit für Freiheit, Verantwortung und Fortschritt einsetzen. Gemeinsam mit unseren Freunden aus ganz Bayern kämpfen wir für eine Politik, die Zukunft möglich macht – mit klaren Werten und mutigen Visionen.</p>
+    <p>Diese Homepage soll nicht nur informieren, sondern auch inspirieren. Sie ist Einladung und Plattform zugleich: für Austausch, für Mitgestaltung und für das gemeinsame Ziel, unseren Landkreis noch lebenswerter zu machen.</p>
+    <p><strong>Mit herzlichen Grüßen</strong><br><strong>Johannes Bawidamann</strong><br>Kreisvorsitzender JU Regensburg Land</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a></p>
+    <p>
+      <a href="https://www.instagram.com/jurgb_land/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      &nbsp;&nbsp;
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav(){document.getElementById('mobile-nav').classList.add('active')}
+    function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('active')}
+  </script>
+</body>
+</html>

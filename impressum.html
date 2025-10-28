@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Impressum · JU Regensburg-Land</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root { --navy:#00164c; --lime:#a1bf2f; --white:#ffffff; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(180deg,#0a1232,#0b153e 40%,#0d1b4f 100%);
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(10,18,50,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .logo img { height: 56px; display: block; }
+
+    nav { display: flex; gap: 8px; }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    nav a:hover { background: rgba(255,255,255,0.12); }
+    nav a.active {
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    @media (max-width:960px) {
+      nav { display: none; }
+      .burger { display: block; }
+    }
+
+    /* MOBILE NAV */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      height: 100%;
+      background: rgba(7,12,34,0.98);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 40px 24px;
+      transition: right 0.3s ease;
+      z-index: 9999;
+    }
+    .mobile-nav.active { right: 0; }
+    .mobile-nav a {
+      color: var(--white);
+      font-size: 1.4rem;
+      text-decoration: none;
+      margin: 14px 0;
+      text-align: right;
+    }
+    .mobile-nav a.active { color: var(--lime); font-weight: 800; }
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 2rem;
+      border: none;
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* HAUPTBEREICH */
+    main {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 16px 80px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
+      color: var(--lime);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: var(--lime);
+      margin-top: 32px;
+    }
+    a { color: var(--lime); }
+
+    /* FOOTER */
+    footer {
+      background: #121523;
+      color: #cfd6ff;
+      text-align: center;
+      padding: 32px 16px;
+    }
+    footer a {
+      color: #e0ffa6;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
+      </a>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a class="active" href="impressum.html">Impressum</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a href="index.html">Start</a>
+    <a href="jungeliste.html">Junge Liste</a>
+    <a href="ortsverbaende.html">Ortsverbände</a>
+    <a href="mitgliedwerden.html">Mitglied werden</a>
+    <a href="kontakt.html">Kontakt</a>
+    <a class="active" href="impressum.html">Impressum</a>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <h1>Impressum</h1>
+
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p><strong>Junge Union Regensburg-Land</strong><br>
+    vertreten durch den Kreisvorsitzenden<br>
+    <strong>Johannes Bawidamann</strong><br>
+    Georg-Britting-Straße 11a<br>
+    93152 Nittendorf<br>
+    E-Mail: <a href="mailto:jobawidamann@aol.de">jobawidamann@aol.de</a></p>
+
+    <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+    <p><strong>Johannes Bawidamann</strong><br>
+    Georg-Britting-Straße 11a<br>
+    93152 Nittendorf<br>
+    E-Mail: <a href="mailto:jobawidamann@aol.de">jobawidamann@aol.de</a></p>
+
+    <h2>Design & technische Umsetzung</h2>
+    <p>Fischer Leopold, Graf von Ballestrem Alexander Gbr<br>
+    Webdesign & Umsetzung der Website für die JU Regensburg-Land</p>
+
+    <h2>Haftungsausschluss</h2>
+    <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird jedoch keine Gewähr übernommen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
+
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · 
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+    </p>
+    <p>
+      <a href="https://www.instagram.com/jurgb_land/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      &nbsp;&nbsp;
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav(){ document.getElementById('mobile-nav').classList.add('active'); }
+    function closeMobileNav(){ document.getElementById('mobile-nav').classList.remove('active'); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kontakt · JU Regensburg-Land</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --navy: #00164c;
+      --lime: #a1bf2f;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: var(--white);
+      background: linear-gradient(180deg, #0a1232, #0b153e 40%, #0d1b4f 100%);
+    }
+
+    /* ===== HEADER (identisch zu index.html) ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(10, 18, 50, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .logo img {
+      height: 56px;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    nav a.active {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
+      nav {
+        display: none;
+      }
+      .burger {
+        display: block;
+      }
+    }
+
+    /* ===== Mobile Nav (Slide-In von rechts) ===== */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      height: 100%;
+      background: rgba(7, 12, 34, 0.98);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 40px 24px;
+      transition: right 0.3s ease;
+      z-index: 9999;
+    }
+    .mobile-nav.active {
+      right: 0;
+    }
+    .mobile-nav a {
+      color: var(--white);
+      font-size: 1.4rem;
+      text-decoration: none;
+      margin: 14px 0;
+      text-align: right;
+    }
+    .mobile-nav a.active {
+      color: var(--lime);
+      font-weight: 800;
+    }
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 2rem;
+      border: none;
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 96px 16px 88px;
+      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+        url('Bilder/Gruppenfoto%20Soeder.png') center/cover no-repeat;
+    }
+    .tag {
+      display: inline-block;
+      color: var(--lime);
+      border: 2px solid var(--lime);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
+      margin: 14px 0 10px;
+      line-height: 1.05;
+    }
+    .lead {
+      opacity: 0.95;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    /* ===== Kontaktbereich ===== */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 16px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 24px;
+      box-sizing: border-box;
+    }
+    .card h3 {
+      margin-top: 0;
+    }
+
+    ul.list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .list li {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .list a {
+      color: var(--lime);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .list a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Formular ===== */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    label {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: block;
+    }
+    input,
+    textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-size: 1rem;
+    }
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      align-self: flex-start;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 2px solid var(--lime);
+      background: var(--lime);
+      color: #0b1a3f;
+      font-weight: 900;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #121523;
+      color: #cfd6ff;
+      text-align: center;
+      padding: 32px 16px;
+      margin-top: 60px;
+    }
+    footer a {
+      color: #e0ffa6;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
+      </a>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="news.html">News</a>
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a class="active" href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a href="index.html">Start</a>
+    <a href="news.html">News</a>
+    <a href="jungeliste.html">Junge Liste</a>
+    <a href="ortsverbaende.html">Ortsverbände</a>
+    <a href="mitgliedwerden.html">Mitglied werden</a>
+    <a class="active" href="kontakt.html">Kontakt</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="tag">#GemeinsamFürDenLandkreisRegensburg</span>
+    <h1>Kontakt</h1>
+    <p class="lead">Schreib uns – wir freuen uns auf deine Nachricht</p>
+  </section>
+
+  <!-- MAIN -->
+  <main class="wrap">
+    <div class="grid">
+      <aside class="card">
+        <h3><i class="fa-solid fa-address-card"></i> Kontaktinformationen</h3>
+        <ul class="list">
+          <li><i class="fa-solid fa-envelope"></i>
+            <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+          </li>
+          <li><i class="fa-brands fa-instagram"></i> <a href="#">Instagram</a></li>
+          <li><i class="fa-brands fa-facebook-f"></i> <a href="#">Facebook</a></li>
+        </ul>
+      </aside>
+
+      <section class="card">
+        <h3><i class="fa-solid fa-paper-plane"></i> Nachricht senden</h3>
+        <form action="mailto:jobawidamann@aol.com" method="post" enctype="text/plain">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="Name" type="text" placeholder="Max Mustermann" required>
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input id="email" name="E-Mail" type="email" placeholder="max@example.de" required>
+          </div>
+          <div>
+            <label for="betreff">Betreff</label>
+            <input id="betreff" name="Betreff" type="text" placeholder="Worum geht es?" required>
+          </div>
+          <div>
+            <label for="nachricht">Nachricht</label>
+            <textarea id="nachricht" name="Nachricht" placeholder="Deine Nachricht an uns..." required></textarea>
+          </div>
+          <button class="btn" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Abschicken
+          </button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · 
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav() {
+      document.getElementById('mobile-nav').classList.add('active');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobile-nav').classList.remove('active');
+    }
+  </script>
+</body>
+</html>

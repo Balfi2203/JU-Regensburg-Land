@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Junge Liste · JU Regensburg-Land</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --navy:#00164c;
+      --lime:#a1bf2f;
+      --white:#ffffff;
+    }
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,sans-serif;
+      color:var(--white);
+      background:linear-gradient(180deg,#0a1232,#0b153e 40%,#0d1b4f 100%);
+    }
+
+    /* ===== HEADER (wie kontakt.html) ===== */
+    header{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(10,18,50,.6);
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    .header-inner{
+      max-width:1200px; margin:0 auto;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 20px;
+    }
+    .logo img{ height:56px; display:block; }
+
+    nav{ display:flex; gap:8px; }
+    nav a{
+      color:var(--white); text-decoration:none; font-weight:700;
+      padding:10px 14px; border-radius:10px; transition:background .2s;
+    }
+    nav a:hover{ background:rgba(255,255,255,.12); }
+    nav a.active{
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+    }
+
+    .burger{
+      display:none; background:none; border:none; color:var(--white);
+      font-size:1.6rem; cursor:pointer;
+    }
+    @media (max-width:960px){
+      nav{ display:none; }
+      .burger{ display:block; }
+    }
+
+    /* ===== Mobile Nav (EXAKT wie kontakt.html) ===== */
+    .mobile-nav{
+      position:fixed; top:0; right:-100%;
+      width:75%; height:100%;
+      background:rgba(7,12,34,.98);
+      backdrop-filter:blur(10px);
+      display:flex; flex-direction:column; align-items:flex-end;
+      padding:40px 24px;
+      transition:right .3s ease; z-index:9999;
+    }
+    .mobile-nav.active{ right:0; }
+    .mobile-nav a{
+      color:var(--white); font-size:1.4rem; text-decoration:none;
+      margin:14px 0; text-align:right;
+    }
+    .mobile-nav a.active{ color:var(--lime); font-weight:800; }
+    .close-btn{
+      position:absolute; top:14px; right:18px; font-size:2rem;
+      border:none; background:none; color:var(--white); cursor:pointer;
+    }
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative; text-align:center; padding:96px 16px 88px;
+      background:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url('Bilder/Team%20Junge%20Liste.jpg') center top/cover no-repeat;
+      background-attachment:fixed; /* Bild fixiert, Köpfe oben sichtbar */
+    }
+    .tag{
+      display:inline-block; color:var(--lime); border:2px solid var(--lime);
+      border-radius:999px; padding:6px 12px; font-weight:800; letter-spacing:.3px;
+      background:rgba(0,0,0,.2);
+    }
+    h1{ font-size:clamp(2rem,4.6vw,3.4rem); margin:14px 0 10px; line-height:1.05; }
+    .lead{ opacity:.95; letter-spacing:.6px; text-transform:uppercase; margin-bottom:22px; }
+    .cta-row{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+    .btn{
+      --bg:var(--lime); --fg:#0b1a3f;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:14px 20px; border-radius:999px; border:2px solid var(--lime);
+      background:var(--bg); color:var(--fg); font-weight:900; text-decoration:none;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .btn:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+    .btn.secondary{ --bg:transparent; --fg:var(--white); border-color:rgba(255,255,255,.6); color:var(--white); }
+
+    /* ===== Content/Chips ===== */
+    .wrap{ max-width:1100px; margin:64px auto; padding:0 16px; text-align:center; }
+    .wrap h2{ font-size:clamp(1.8rem,3vw,2.6rem); margin-bottom:16px; }
+    .wrap p{ opacity:.95; line-height:1.6; margin-bottom:18px; }
+
+    .jl-inner{
+      max-width:1200px; margin:48px auto 0; border-radius:18px; padding:32px 18px;
+      background:linear-gradient(135deg, rgba(161,191,47,.22), rgba(161,191,47,.10) 40%, rgba(0,22,76,.55));
+      border:1px solid rgba(161,191,47,.45); text-align:center;
+    }
+    .jl-badge{ display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:999px; border:2px solid var(--lime); color:var(--lime); font-weight:900; margin-bottom:10px; }
+    .jl-title{ font-size:clamp(1.6rem,3.3vw,2.4rem); margin:8px 0 6px; }
+    .jl-text{ max-width:900px; margin:0 auto 14px; opacity:.97; }
+    .jl-points{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:14px 0 20px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:8px 12px;
+      border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    }
+
+    .grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+      max-width:1100px; margin:24px auto 0; padding:0 16px;
+    }
+    .card{
+      border-radius:16px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.14); padding:18px; text-align:left;
+    }
+    .card h3{ margin:8px 0 6px; }
+    .card p{ opacity:.95; margin:0; }
+    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
+
+    /* ===== Footer ===== */
+    footer{
+      background:#121523; color:#cfd6ff; text-align:center; padding:32px 16px; margin-top:60px;
+    }
+    footer a{ color:#e0ffa6; text-decoration:none; }
+    footer a:hover{ text-decoration:underline; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html"><img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo"></a>
+      <nav aria-label="Hauptnavigation">
+        <a href="index.html">Start</a>
+        <!-- News entfernt -->
+        <a class="active" href="jungeliste.html" aria-current="page">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a href="mitgliedwerden.html">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="burger" aria-label="Menü öffnen" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MOBILE NAV (wie kontakt.html) -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()" aria-label="Menü schließen">&times;</button>
+    <a href="index.html" onclick="closeMobileNav()">Start</a>
+    <!-- News entfernt -->
+    <a class="active" href="jungeliste.html" onclick="closeMobileNav()">Junge Liste</a>
+    <a href="ortsverbaende.html" onclick="closeMobileNav()">Ortsverbände</a>
+    <a href="mitgliedwerden.html" onclick="closeMobileNav()">Mitglied werden</a>
+    <a href="kontakt.html" onclick="closeMobileNav()">Kontakt</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="tag">#JungeListe</span>
+    <h1>Unsere Junge Liste</h1>
+    <p class="lead">Jung. Engagiert. Zukunftsorientiert.</p>
+    <div class="cta-row">
+      <a class="btn" href="mitgliedwerden.html"><i class="fa-solid fa-user-plus"></i> Jetzt mitmachen</a>
+      <a class="btn secondary" href="kontakt.html"><i class="fa-solid fa-envelope"></i> Kontakt aufnehmen</a>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="wrap" aria-label="Einführung">
+    <h2>Junge Stimmen für den Landkreis</h2>
+    <p>Die <strong>Junge Liste</strong> ist unser Team für die Kreistagswahl. Mit frischen Ideen setzen wir uns für die Themen ein, die junge Menschen bewegen: Digitalisierung, Mobilität, bezahlbarer Wohnraum und lebendige Ortsmitten.</p>
+  </section>
+
+  <!-- SCHWERPUNKTE -->
+  <section class="jl-inner" aria-label="Schwerpunkte">
+    <span class="jl-badge"><i class="fa-solid fa-star"></i> Unsere Schwerpunkte</span>
+    <h2 class="jl-title">Wofür wir stehen</h2>
+    <p class="jl-text">Konsequent pragmatisch, bodenständig und lösungsorientiert – damit der Landkreis Regensburg für junge Menschen attraktiv bleibt.</p>
+    <div class="jl-points">
+      <span class="chip"><i class="fa-solid fa-bus"></i> Bessere ÖPNV-Anbindung</span>
+      <span class="chip"><i class="fa-solid fa-wifi"></i> Digitaler Landkreis</span>
+      <span class="chip"><i class="fa-solid fa-house"></i> Wohnungsbau</span>
+      <span class="chip"><i class="fa-solid fa-tree"></i> Lebenswerte Ortsmitten</span>
+      <span class="chip"><i class="fa-solid fa-handshake-angle"></i> Ehrenamt stärken</span>
+    </div>
+  </section>
+
+  <!-- PROGRAMM-HIGHLIGHTS -->
+  <section class="grid" aria-label="Programm-Highlights">
+    <div class="card">
+      <h3><i class="fa-solid fa-train-subway"></i> Takt & Ticket</h3>
+      <p>Mehr Abend- und Wochenendtakte, bessere Bus-Bahn-Anschlüsse und ein günstiges Jugend-/Azubi-Ticket.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-tower-broadcast"></i> Netzausbau</h3>
+      <p>Flächendeckendes 5G & Glasfaser, Co-Working-Spaces in den Gemeinden und digitale Verwaltung ohne Papier.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-people-roof"></i> Wohnen & Leben</h3>
+      <p>Mehr Wohnungsbau, Treffpunkte und sichere Wege für Jung & Alt.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · 
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+    </p>
+    <p>
+      <a href="https://www.instagram.com/jurgb_land/" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fab fa-instagram"></i>
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" aria-label="Facebook" target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </p>
+  </footer>
+
+  <script>
+    function openMobileNav(){ document.getElementById('mobile-nav').classList.add('active'); }
+    function closeMobileNav(){ document.getElementById('mobile-nav').classList.remove('active'); }
+  </script>
+</body>
+</html>

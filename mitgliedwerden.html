@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mitglied werden · JU Regensburg-Land</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --navy: #00164c;
+      --lime: #a1bf2f;
+      --white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      color: #0f1430;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--navy);
+      border-bottom: 3px solid var(--lime);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    .logo img {
+      height: 56px;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: background 0.2s;
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    nav a.active {
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 960px) {
+      nav { display: none; }
+      .burger { display: block; }
+    }
+
+    /* ===== MOBILE NAV (wie kontakt.html) ===== */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      height: 100%;
+      background: rgba(7, 12, 34, 0.98);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 40px 24px;
+      transition: right 0.3s ease;
+      z-index: 9999;
+    }
+    .mobile-nav.active { right: 0; }
+    .mobile-nav a {
+      color: var(--white);
+      font-size: 1.4rem;
+      text-decoration: none;
+      margin: 14px 0;
+      text-align: right;
+    }
+    .mobile-nav a.active {
+      color: var(--lime);
+      font-weight: 800;
+    }
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 2rem;
+      border: none;
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 96px 16px 80px;
+      color: var(--white);
+      background: linear-gradient(180deg, var(--navy), #0b1f68);
+    }
+    .tag {
+      display: inline-block;
+      color: var(--navy);
+      border: 2px solid var(--lime);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 800;
+      background: rgba(161, 191, 47, 0.85);
+    }
+    h1 {
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      margin: 14px 0 10px;
+    }
+    .lead {
+      opacity: 0.95;
+      max-width: 720px;
+      margin: 0 auto 22px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      border: 2px solid var(--lime);
+      background: var(--lime);
+      color: #0b173a;
+      font-weight: 900;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* ===== MAIN ===== */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 16px 70px;
+      color: #0f1430;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #e6eaf7;
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+    .card h3 {
+      color: var(--navy);
+      margin: 0 0 6px;
+    }
+    .muted { color: #5b6480; }
+
+    .steps {
+      margin-top: 36px;
+      display: grid;
+      gap: 16px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: #fff;
+      border: 1px dashed #dde3f2;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .num {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: rgba(161, 191, 47, 0.16);
+      border: 2px solid var(--lime);
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    /* ===== FAQ ===== */
+    .faq {
+      margin-top: 56px;
+    }
+    .faq h2 {
+      text-align: center;
+      color: var(--navy);
+      margin: 0 0 20px;
+      font-size: 1.9rem;
+    }
+    .faq details {
+      background: #fff;
+      border: 1px solid #e6eaf7;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .faq details:hover {
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+    .faq summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 800;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+    }
+    .faq summary i {
+      color: var(--lime);
+    }
+    .faq details[open] {
+      border-color: rgba(161, 191, 47, 0.5);
+      box-shadow: 0 6px 18px rgba(161, 191, 47, 0.15);
+    }
+    .faq details p {
+      margin: 10px 0 0;
+      color: #5b6480;
+      padding-left: 32px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #121523;
+      color: #cfd6ff;
+      text-align: center;
+      padding: 32px 16px;
+      margin-top: 40px;
+    }
+    footer a {
+      color: #e0ffa6;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .social {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social a {
+      color: #e0ffa6;
+      font-size: 1.2rem;
+    }
+    .social a:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
+      </a>
+      <nav>
+        <a href="index.html">Start</a>
+        <a href="jungeliste.html">Junge Liste</a>
+        <a href="ortsverbaende.html">Ortsverbände</a>
+        <a class="active" href="mitgliedwerden.html" aria-current="page">Mitglied werden</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <button class="burger" onclick="openMobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE NAV ===== -->
+  <div id="mobile-nav" class="mobile-nav">
+    <button class="close-btn" onclick="closeMobileNav()">&times;</button>
+    <a href="index.html">Start</a>
+    <a href="jungeliste.html">Junge Liste</a>
+    <a href="ortsverbaende.html">Ortsverbände</a>
+    <a class="active" href="mitgliedwerden.html">Mitglied werden</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <span class="tag">#MachMit</span>
+    <h1>Jetzt Mitglied werden</h1>
+    <p class="lead">Werde Teil der Jungen Union Regensburg-Land und bring deine Ideen ein – für moderne Infrastruktur, starke Orte und echte Chancen im Landkreis.</p>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.ju-bayern.de/med/38111-mitgliedsantrag-dina4-2025.pdf">
+      <i class="fa-solid fa-file-signature"></i> Mitgliedsantrag öffnen (PDF)
+    </a>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <main class="wrap">
+    <section class="cards" aria-label="Vorteile der Mitgliedschaft">
+      <article class="card">
+        <h3><i class="fa-solid fa-lightbulb"></i> Deine Ideen zählen</h3>
+        <p class="muted">Von Mobilität bis Digitalisierung – bring dich ein und bewege etwas vor Ort.</p>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-people-group"></i> Starkes Netzwerk</h3>
+        <p class="muted">Triff engagierte junge Leute, Mandatsträger und Macher im Landkreis.</p>
+      </article>
+      <article class="card">
+        <h3><i class="fa-solid fa-graduation-cap"></i> Lernen & Verantwortung</h3>
+        <p class="muted">Workshops, Projekte, Wahlkampf-Praxis – und Verantwortung, wenn du willst.</p>
+      </article>
+    </section>
+
+    <section class="steps" aria-label="Mitglied werden – Schritt für Schritt">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <strong>Antrag öffnen</strong>
+          <p class="muted">Klicke auf „Mitgliedsantrag öffnen“. Das aktuelle DIN-A4-Formular der JU Bayern öffnet in einem neuen Tab.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <strong>Ausfüllen & unterschreiben</strong>
+          <p class="muted">Digital oder handschriftlich – beides passt.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <strong>Abgeben oder per Mail senden</strong>
+          <p class="muted">Gib den Antrag bei deinem <a href="ortsverbaende.html">Ortsverband</a> ab oder sende ihn an <a href="mailto:jobawidamann@aol.come">jobawidamann@aol.com</a>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div>
+          <strong>Willkommen!</strong>
+          <p class="muted">Du erhältst eine Bestätigung und Infos zu den nächsten Terminen.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq" aria-label="Häufige Fragen">
+      <h2><i class="fa-solid fa-circle-question" style="color: var(--lime)"></i> Häufige Fragen</h2>
+      <details>
+        <summary><i class="fa-solid fa-user"></i> Wie alt muss ich sein?</summary>
+        <p>In der Regel zwischen 14 und 35 Jahren.</p>
+      </details>
+      <details>
+        <summary><i class="fa-solid fa-euro-sign"></i> Welche Kosten gibt es?</summary>
+        <p>Der Beitrag wird vom Verband festgelegt. Frag gern bei deinem Ortsverband nach – wir helfen dir weiter.</p>
+      </details>
+      <details>
+        <summary><i class="fa-solid fa-handshake"></i> Brauche ich politische Erfahrung?</summary>
+        <p>Nein. Neugier, Teamgeist und Lust, etwas zu bewegen, reichen völlig.</p>
+      </details>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 Junge Union Regensburg-Land · 
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+    </p>
+    <div class="social" aria-label="Social Media">
+      <a href="https://www.instagram.com/jurgb_land/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/JURegensburgLand/photos/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    function openMobileNav() {
+      document.getElementById('mobile-nav').classList.add('active');
+    }
+    function closeMobileNav() {
+      document.getElementById('mobile-nav').classList.remove('active');
+    }
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMobileNav(); });
+  </script>
+</body>
+</html>
