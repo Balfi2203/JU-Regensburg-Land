@@ -20,7 +20,7 @@
       background: linear-gradient(180deg, #0a1232, #0b153e 40%, #0d1b4f 100%);
     }
 
-    /* ===== HEADER (identisch zu index.html) ===== */
+    /* ===== HEADER ===== */
     header {
       position: sticky;
       top: 0;
@@ -52,7 +52,6 @@
       font-weight: 700;
       padding: 10px 14px;
       border-radius: 10px;
-      transition: background 0.2s;
     }
     nav a:hover {
       background: rgba(255, 255, 255, 0.12);
@@ -72,15 +71,11 @@
     }
 
     @media (max-width: 960px) {
-      nav {
-        display: none;
-      }
-      .burger {
-        display: block;
-      }
+      nav { display: none; }
+      .burger { display: block; }
     }
 
-    /* ===== Mobile Nav (Slide-In von rechts) ===== */
+    /* ===== Mobile Nav ===== */
     .mobile-nav {
       position: fixed;
       top: 0;
@@ -123,10 +118,9 @@
 
     /* ===== Hero ===== */
     .hero {
-      position: relative;
       text-align: center;
       padding: 96px 16px 88px;
-      background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+      background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
         url('Bilder/Gruppenfoto%20Soeder.png') center/cover no-repeat;
     }
     .tag {
@@ -136,22 +130,19 @@
       border-radius: 999px;
       padding: 6px 12px;
       font-weight: 800;
-      letter-spacing: 0.3px;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0,0,0,.2);
     }
     h1 {
       font-size: clamp(2rem, 4.6vw, 3.4rem);
       margin: 14px 0 10px;
-      line-height: 1.05;
     }
     .lead {
-      opacity: 0.95;
-      letter-spacing: 0.6px;
+      opacity: .95;
+      letter-spacing: .6px;
       text-transform: uppercase;
-      margin-bottom: 22px;
     }
 
-    /* ===== Kontaktbereich ===== */
+    /* ===== Content ===== */
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -163,20 +154,14 @@
       gap: 24px;
     }
     @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
     }
 
     .card {
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
       padding: 24px;
-      box-sizing: border-box;
-    }
-    .card h3 {
-      margin-top: 0;
     }
 
     ul.list {
@@ -185,10 +170,10 @@
       margin: 0;
     }
     .list li {
-      margin: 10px 0;
+      margin: 12px 0;
       display: flex;
+      gap: 12px;
       align-items: center;
-      gap: 10px;
     }
     .list a {
       color: var(--lime);
@@ -199,40 +184,11 @@
       text-decoration: underline;
     }
 
-    /* ===== Formular ===== */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 10px;
-    }
-    label {
-      font-weight: 700;
-      margin-bottom: 4px;
-      display: block;
-    }
-    input,
-    textarea {
-      width: 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--white);
-      font-size: 1rem;
-    }
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      align-self: flex-start;
-      padding: 12px 18px;
+      padding: 14px 22px;
       border-radius: 999px;
       border: 2px solid var(--lime);
       background: var(--lime);
@@ -240,17 +196,10 @@
       font-weight: 900;
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .btn:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
     }
 
-    /* ===== Footer ===== */
     footer {
       background: #121523;
-      color: #cfd6ff;
       text-align: center;
       padding: 32px 16px;
       margin-top: 60px;
@@ -259,34 +208,30 @@
       color: #e0ffa6;
       text-decoration: none;
     }
-    footer a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-inner">
-      <a class="logo" href="index.html">
-        <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
-      </a>
-      <nav>
-  <a href="index.html">Start</a>
-  <a href="jungeliste.html">Junge Liste</a>
-  <a href="ortsverbaende.html">Ortsverbände</a>
-  <a href="mitgliedwerden.html">Mitglied werden</a>
-  <a class="active" href="kontakt.html">Kontakt</a>
-</nav>
-      <button class="burger" onclick="openMobileNav()">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-  </header>
+<header>
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <img src="JU rgb-land logo.png" alt="JU Regensburg-Land Logo">
+    </a>
+    <nav>
+      <a href="index.html">Start</a>
+      <a href="jungeliste.html">Junge Liste</a>
+      <a href="ortsverbaende.html">Ortsverbände</a>
+      <a href="mitgliedwerden.html">Mitglied werden</a>
+      <a class="active" href="kontakt.html">Kontakt</a>
+    </nav>
+    <button class="burger" onclick="openMobileNav()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
 
-  <!-- MOBILE NAV -->
-  <div id="mobile-nav" class="mobile-nav">
+<div id="mobile-nav" class="mobile-nav">
   <button class="close-btn" onclick="closeMobileNav()">&times;</button>
   <a href="index.html">Start</a>
   <a href="jungeliste.html">Junge Liste</a>
@@ -295,69 +240,74 @@
   <a class="active" href="kontakt.html">Kontakt</a>
 </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <span class="tag">#GemeinsamFürDenLandkreisRegensburg</span>
-    <h1>Kontakt</h1>
-    <p class="lead">Schreib uns – wir freuen uns auf deine Nachricht</p>
-  </section>
+<section class="hero">
+  <span class="tag">#GemeinsamFürDenLandkreisRegensburg</span>
+  <h1>Kontakt</h1>
+  <p class="lead">Schreib uns – wir freuen uns auf deine Nachricht</p>
+</section>
 
-  <!-- MAIN -->
-  <main class="wrap">
-    <div class="grid">
-      <aside class="card">
-        <h3><i class="fa-solid fa-address-card"></i> Kontaktinformationen</h3>
-        <ul class="list">
-          <li><i class="fa-solid fa-envelope"></i>
-            <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
-          </li>
-          <li><i class="fa-brands fa-instagram"></i> <a href="#">Instagram</a></li>
-          <li><i class="fa-brands fa-facebook-f"></i> <a href="#">Facebook</a></li>
-        </ul>
-      </aside>
+<main class="wrap">
+  <div class="grid">
 
-      <section class="card">
-        <h3><i class="fa-solid fa-paper-plane"></i> Nachricht senden</h3>
-        <form action="mailto:jobawidamann@aol.com" method="post" enctype="text/plain">
-          <div>
-            <label for="name">Name</label>
-            <input id="name" name="Name" type="text" placeholder="Max Mustermann" required>
-          </div>
-          <div>
-            <label for="email">E-Mail</label>
-            <input id="email" name="E-Mail" type="email" placeholder="max@example.de" required>
-          </div>
-          <div>
-            <label for="betreff">Betreff</label>
-            <input id="betreff" name="Betreff" type="text" placeholder="Worum geht es?" required>
-          </div>
-          <div>
-            <label for="nachricht">Nachricht</label>
-            <textarea id="nachricht" name="Nachricht" placeholder="Deine Nachricht an uns..." required></textarea>
-          </div>
-          <button class="btn" type="submit">
-            <i class="fa-solid fa-paper-plane"></i> Abschicken
-          </button>
-        </form>
-      </section>
-    </div>
-  </main>
+    <aside class="card">
+      <h3><i class="fa-solid fa-address-card"></i> Kontakt</h3>
+      <ul class="list">
+        <li>
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+        </li>
+        <li>
+          <i class="fa-brands fa-instagram"></i>
+          <a href="https://www.instagram.com/jurgb_land/" target="_blank" rel="noopener">
+            Instagram
+          </a>
+        </li>
+        <li>
+          <i class="fa-brands fa-facebook-f"></i>
+          <a href="https://www.facebook.com/JURegensburgLand/photos/" target="_blank" rel="noopener">
+            Facebook
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-  <footer>
-    <p>&copy; 2025 Junge Union Regensburg-Land · 
-      <a href="impressum.html">Impressum</a> · 
-      <a href="datenschutz.html">Datenschutz</a> · 
-      <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
-    </p>
-  </footer>
+    <section class="card">
+      <h3><i class="fa-solid fa-paper-plane"></i> Nachricht senden</h3>
 
-  <script>
-    function openMobileNav() {
-      document.getElementById('mobile-nav').classList.add('active');
-    }
-    function closeMobileNav() {
-      document.getElementById('mobile-nav').classList.remove('active');
-    }
-  </script>
+      <p style="margin-bottom:20px; opacity:0.9;">
+        Klicke auf den Button, um uns direkt per E-Mail zu kontaktieren.
+        Dein E-Mail-Programm öffnet sich automatisch.
+      </p>
+
+      <a
+        href="mailto:jobawidamann@aol.com?subject=Kontaktanfrage%20JU%20Regensburg-Land"
+        class="btn"
+      >
+        <i class="fa-solid fa-envelope"></i>
+        E-Mail schreiben
+      </a>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p>
+    &copy; 2025 Junge Union Regensburg-Land ·
+    <a href="impressum.html">Impressum</a> ·
+    <a href="datenschutz.html">Datenschutz</a> ·
+    <a href="mailto:jobawidamann@aol.com">jobawidamann@aol.com</a>
+  </p>
+</footer>
+
+<script>
+  function openMobileNav() {
+    document.getElementById('mobile-nav').classList.add('active');
+  }
+  function closeMobileNav() {
+    document.getElementById('mobile-nav').classList.remove('active');
+  }
+</script>
+
 </body>
 </html>
