@@ -9,25 +9,52 @@
   <meta name="description" content="Junge Union Regensburg-Land – Politik von jungen Menschen für unsere Region.">
   <meta name="keywords" content="JU Landkreis Regensburg, Junge Union, Politik Regensburg, Politik Landkreis Regensburg, Landkreis Regensburg, CSU regensburg, CSU Landkreis Regensburg, Jugendorganisation, Politik für Junge Menschen, Junge Politik, Junge Liste, Junge Liste Landkreis Regensburg, Kommunahlwahl 2026">
   <meta name="author" content="JU Regensburg-Land">
-  
+
+  <!-- (Hilft Google beim Sitename-Signal) -->
+  <meta name="application-name" content="JU Landkreis Regensburg">
+
   <!-- Open Graph Meta Tags (für Facebook & Instagram) -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="de_DE">
-<meta property="og:site_name" content="Junge Union Regensburg-Land">
-<meta property="og:title" content="Junge Union Regensburg-Land – Jung. Engagiert. Zukunftsorientiert.">
-<meta property="og:description" content="Politik von jungen Menschen für unsere Region. Mach mit bei der JU Regensburg-Land!">
-<meta property="og:url" content="https://ju-landkreis-regensburg.de/">
-<meta property="og:image" content="https://ju-landkreis-regensburg.de/Bilder/gruppenfotowahl.jpg">
-<meta property="og:image:alt" content="Gruppenfoto der Jungen Union Regensburg-Land">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="JU Landkreis Regensburg">
+  <meta property="og:title" content="Junge Union Regensburg-Land – Jung. Engagiert. Zukunftsorientiert.">
+  <meta property="og:description" content="Politik von jungen Menschen für unsere Region. Mach mit bei der JU Regensburg-Land!">
+  <meta property="og:url" content="https://ju-landkreis-regensburg.de/">
+  <meta property="og:image" content="https://ju-landkreis-regensburg.de/Bilder/gruppenfotowahl.jpg">
+  <meta property="og:image:alt" content="Gruppenfoto der Jungen Union Regensburg-Land">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
-<!-- Facebook Integration -->
-<meta property="article:publisher" content="https://www.facebook.com/JURegensburgLand/photos/">
+  <!-- Facebook Integration -->
+  <meta property="article:publisher" content="https://www.facebook.com/JURegensburgLand/photos/">
 
-<!-- Instagram Profil -->
-<meta property="og:see_also" content="https://www.instagram.com/jurgb_land/">
+  <!-- Instagram Profil -->
+  <meta property="og:see_also" content="https://www.instagram.com/jurgb_land/">
+
+  <!-- Structured Data (Sitename-Signal für Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "JU Landkreis Regensburg",
+    "alternateName": ["JU Regensburg-Land", "Junge Union Landkreis Regensburg"],
+    "url": "https://ju-landkreis-regensburg.de/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "JU Landkreis Regensburg",
+    "alternateName": "JU Regensburg-Land",
+    "url": "https://ju-landkreis-regensburg.de/",
+    "sameAs": [
+      "https://www.instagram.com/jurgb_land/",
+      "https://www.facebook.com/JURegensburgLand/photos/"
+    ]
+  }
+  </script>
 
   <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
@@ -79,6 +106,69 @@
     .junge-liste{margin:68px 0}
     .jl-inner{border-radius:18px;padding:34px 22px;background:linear-gradient(135deg, rgba(161,191,47,.25), rgba(161,191,47,.12) 40%, rgba(0,22,76,.55));border:1px solid rgba(161,191,47,.45);text-align:center}
     .jl-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:2px solid var(--lime);color:var(--lime);font-weight:900;margin-bottom:10px}
+
+    /* ===== NEUER SUPPORT-ABSCHNITT ===== */
+    .support{
+      max-width:1200px;
+      margin:0 auto 10px;
+      padding:0 16px;
+    }
+    .support-card{
+      border-radius:18px;
+      padding:34px 22px;
+      background:linear-gradient(145deg, rgba(161,191,47,.10), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      text-align:center;
+    }
+    .support-card h2{
+      margin:0 0 10px;
+      font-size:clamp(1.6rem,3vw,2.2rem);
+    }
+    .support-card h2 span{
+      color:var(--lime);
+      font-weight:900;
+    }
+    .support-card p{
+      margin:0 auto 12px;
+      max-width:920px;
+      line-height:1.65;
+      opacity:.98;
+    }
+    .support-sub{
+      margin-top:18px;
+      font-weight:900;
+      color:var(--lime);
+      letter-spacing:.2px;
+    }
+    .support-gallery{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+    .support-gallery img{
+      width:100%;
+      height:auto;              
+      object-fit:contain;       
+      background:#0a1232;       
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 10px 22px rgba(0,0,0,.22);
+      transition:transform .18s ease, filter .18s ease;
+}
+    .support-gallery img:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.03);
+    }
+    @media(max-width:1000px){
+      .support-gallery{grid-template-columns:repeat(2,1fr)}
+      .support-gallery img{height:170px}
+    }
+    @media(max-width:520px){
+      .support-gallery{grid-template-columns:1fr}
+      .support-gallery img{height:190px}
+    }
 
     .greeting{max-width:1000px;margin:84px auto 40px;padding:54px 42px;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.15);border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.25)}
     .greeting img{width:200px;border-radius:14px;margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,.3)}
@@ -141,6 +231,31 @@
         <p>Mach mit und bring deine Ideen ein.</p>
         <a href="mitgliedwerden.html">Mitglied werden →</a>
       </article>
+    </div>
+  </section>
+
+  <!-- NEUER ABSCHNITT (grün markiert) -->
+  <section class="support" aria-label="Unterstützerunterschriften">
+    <div class="support-card">
+      <h2><span>Junge Liste</span> – Wir brauchen deine Unterstützung</h2>
+      <p>
+        Um uns bei der nächsten Kreistagswahl aufstellen lassen zu können, brauchen wir <strong>430 Unterstützerunterschriften</strong>.
+        In allen Rathäusern im Landkreis Regensburg liegen deshalb Listen aus, auf denen man noch bis <strong>19. Januar</strong> unterschreiben kann.
+        Wir bedanken uns herzlichst für jede Unterstützung.
+      </p>
+
+      <div class="support-sub">Sonderöffnungszeiten in Rathäusern für die Unterschriften:</div>
+
+      <div class="support-gallery" aria-label="Rathaus-Sonderöffnungszeiten Bilder">
+        <img src="Bilder/rathaus1.jpg" alt="Sonderöffnungszeiten Rathaus 1">
+        <img src="Bilder/rathaus2.jpg" alt="Sonderöffnungszeiten Rathaus 2">
+        <img src="Bilder/rathaus3.jpg" alt="Sonderöffnungszeiten Rathaus 3">
+        <img src="Bilder/rathaus4.jpg" alt="Sonderöffnungszeiten Rathaus 4">
+        <img src="Bilder/rathaus5.jpg" alt="Sonderöffnungszeiten Rathaus 5">
+        <img src="Bilder/rathaus6.jpg" alt="Sonderöffnungszeiten Rathaus 6">
+        <img src="Bilder/rathaus7.jpg" alt="Sonderöffnungszeiten Rathaus 7">
+        <img src="Bilder/rathaus8.jpg" alt="Sonderöffnungszeiten Rathaus 8">
+      </div>
     </div>
   </section>
 
